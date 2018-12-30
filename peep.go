@@ -35,9 +35,9 @@ func Run(args []string) int {
 }
 
 type peep struct {
-	pid         int
-	commandArgs []string
-	out         io.Writer
+	pid                  int
+	commandArgs          []string
+	outStream, errStream io.Writer
 
 	psStat *psStat
 }
@@ -54,9 +54,27 @@ func (pe *peep) run() error {
 
 	ret, err := pe.watch()
 	if err != nil {
+		// XXX notify something?
 		return err
 	}
-	return json.NewEncoder(pe.out).Encode(ret)
+	if len(pe.commandArgs) > 0 {
+		cmd := exec.Command(pe.commandArgs[0], pe.commandArgs[1:]...)
+		cmd.Stdout = pe.outStream
+		cmd.Stderr = pe.errStream
+		err := func() error {
+			stdin, err := cmd.StdinPipe()
+			if err != nil {
+				return err
+			}
+			defer stdin.Close()
+			return json.NewEncoder(stdin).Encode(ret)
+		}()
+		if err != nil {
+			return err
+		}
+		return cmd.Run()
+	}
+	return json.NewEncoder(pe.outStream).Encode(ret)
 }
 
 func (pe *peep) getPsStat() (*psStat, error) {

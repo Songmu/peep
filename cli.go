@@ -56,8 +56,7 @@ Options:
 			pe.commandArgs = pe.commandArgs[1:]
 		}
 	}
-	if pe.out == nil {
-		pe.out = cl.outStream
-	}
+	pe.outStream = cl.outStream
+	pe.errStream = cl.errStream
 	return pe, nil
 }
