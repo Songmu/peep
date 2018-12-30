@@ -42,6 +42,9 @@ Options:
 `, version, revision, runtime.Version())
 		fs.PrintDefaults()
 	}
+	fs.StringVar(&pe.host, "H", "", "ssh destination")
+	fs.IntVar(&pe.port, "p", 0, "ssh port")
+
 	err := fs.Parse(args)
 	if err != nil {
 		return nil, err

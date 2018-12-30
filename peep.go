@@ -39,6 +39,9 @@ type peep struct {
 	commandArgs          []string
 	outStream, errStream io.Writer
 
+	host string
+	port int
+
 	psStat *psStat
 }
 
@@ -78,7 +81,15 @@ func (pe *peep) run() error {
 }
 
 func (pe *peep) getPsStat() (*psStat, error) {
-	c := pe.genWatcherCmd()
+	ps := []string{"ps", "-p", fmt.Sprintf("%d", pe.pid), "-o", "user,lstart,command"}
+	if pe.host != "" {
+		ssh := []string{"ssh", pe.host}
+		if pe.port > 0 {
+			ssh = append(ssh, "-p", fmt.Sprintf("%d", pe.port))
+		}
+		ps = append(ssh, ps...)
+	}
+	c := exec.Command(ps[0], ps[1:]...)
 	out, err := c.Output()
 	o := string(out)
 	if err != nil {
@@ -94,8 +105,12 @@ func (pe *peep) getPsStat() (*psStat, error) {
 }
 
 func (pe *peep) watch() (*result, error) {
+	interval := time.Second
+	if pe.host != "" {
+		interval *= 5
+	}
 	for {
-		time.Sleep(time.Second)
+		time.Sleep(interval)
 		p, err := pe.getPsStat()
 		if err != nil {
 			return nil, err
@@ -143,8 +158,4 @@ func parsePsStat(str string) (*psStat, error) {
 		Command: stuff[6],
 		Started: t,
 	}, nil
-}
-
-func (pe *peep) genWatcherCmd() *exec.Cmd {
-	return exec.Command("ps", "-p", fmt.Sprintf("%d", pe.pid), "-o", "user,lstart,command")
 }
