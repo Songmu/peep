@@ -1,4 +1,4 @@
-package peepnotify
+package peepnotifier
 
 import (
 	"flag"
@@ -17,7 +17,7 @@ const (
 	exitCodeErr
 )
 
-// Run the peepnotify
+// Run the peepnotifier
 func Run(args []string) int {
 	err := (&cli{outStream: os.Stdout, errStream: os.Stderr}).run(args)
 	if err != nil {

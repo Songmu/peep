@@ -1,4 +1,4 @@
-package peepnotify
+package peepnotifier
 
 import (
 	"encoding/json"
