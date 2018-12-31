@@ -35,7 +35,7 @@ bump: devel-deps
 
 crossbuild:
 	goxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
-	  -d=./dist/v$(VERSION) ./cmd/*
+      -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*
 
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
