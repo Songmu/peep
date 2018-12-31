@@ -32,12 +32,14 @@ func (cl *cli) parseArgs(args []string) (*peep, error) {
 	fs.Usage = func() {
 		fs.SetOutput(cl.outStream)
 		defer fs.SetOutput(cl.errStream)
-		fmt.Fprintf(cl.outStream, `peep - Process Peeper
+		fmt.Fprintf(cl.outStream, `peep - Process peeper
+
+    Watch a process and execute specified command for notification when finished.
 
 Version: %s (rev: %s/%s)
 
 Synopsis:
-    %% peep $PID -- echo 1
+    %% peep [-H user@host -p $PORT] $PID -- echo 1
 Options:
 `, version, revision, runtime.Version())
 		fs.PrintDefaults()
