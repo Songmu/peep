@@ -11,4 +11,5 @@ type result struct {
 	Command string    `json:"command"`
 	Started time.Time `json:"started"`
 	Ended   time.Time `json:"ended"`
+	Host    string    `json:"host"`
 }

@@ -117,9 +117,14 @@ func (pe *peep) watch() (*result, error) {
 			return nil, err
 		}
 		if p == nil || p.Command != pe.psStat.Command {
+			h := pe.host
+			if h == "" {
+				h = "localhost" // XXX retrieve from `hostname` command?
+			}
 			return &result{
 				psStat: *pe.psStat,
 				Ended:  time.Now(),
+				Host:   h,
 			}, nil
 		}
 	}
@@ -131,10 +136,10 @@ type psStat struct {
 	Started time.Time `json:"started"`
 }
 
-// XXX needs hostname?
 type result struct {
 	psStat
 	Ended time.Time `json:"ended"`
+	Host  string    `json:"host"`
 }
 
 var reg = regexp.MustCompile(`\s+`)
