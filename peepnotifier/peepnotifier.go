@@ -7,7 +7,10 @@ import (
 	"io"
 	"log"
 	"os"
+	"syscall"
 	"time"
+
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 var (
@@ -62,10 +65,13 @@ func (pe *peepnotifier) dispatch(args []string) error {
 	if !ok {
 		return fmt.Errorf("unknown subcommand: %s", args[0])
 	}
-	re := &result{}
-	err := json.NewDecoder(os.Stdin).Decode(re)
-	if err != nil {
-		return err
+	var re *result
+	if !terminal.IsTerminal(syscall.Stdin) {
+		re = &result{}
+		err := json.NewDecoder(os.Stdin).Decode(re)
+		if err != nil {
+			return err
+		}
 	}
 	return ru.run(re, args[1:])
 }
