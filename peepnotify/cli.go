@@ -24,7 +24,8 @@ func (cl *cli) run(args []string) error {
 }
 
 var runnerMap = map[string]runner{
-	"stdout": &stdout{},
+	"stdout":     &stdout{},
+	"pushbullet": &pushbullet{},
 }
 
 func (cl *cli) dispatch(args []string) error {
