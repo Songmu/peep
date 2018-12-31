@@ -51,6 +51,7 @@ func (pe *peepnotifier) run(args []string) error {
 var runnerMap = map[string]runner{
 	"stdout":     &stdout{},
 	"pushbullet": &pushbullet{},
+	"slack":      &slack{},
 }
 
 func (pe *peepnotifier) dispatch(args []string) error {
