@@ -7,6 +7,8 @@ import (
 	"io"
 	"log"
 	"os"
+	"sort"
+	"strings"
 	"syscall"
 	"time"
 
@@ -45,7 +47,7 @@ func (pe *peepnotifier) run(args []string) error {
 	errStream = pe.errStream
 
 	log.SetOutput(pe.errStream)
-	log.SetPrefix("[peepnotify] ")
+	log.SetPrefix("[peep-notify] ")
 	log.SetFlags(0)
 
 	return pe.dispatch(args)
@@ -57,10 +59,33 @@ var runnerMap = map[string]runner{
 	"slack":      &slack{},
 }
 
+var commands []string
+
+func init() {
+	for k := range runnerMap {
+		commands = append(commands, k)
+	}
+	sort.Strings(commands)
+}
+
 func (pe *peepnotifier) dispatch(args []string) error {
 	if len(args) < 1 {
 		return fmt.Errorf("no subcommands specified")
 	}
+	if strings.HasPrefix(args[0], "-") {
+		fs := flag.NewFlagSet("peep-notify", flag.ContinueOnError)
+		fs.Usage = func() {
+			fmt.Fprintf(pe.outStream, `Usage: peep-notify <target> [<args>]
+
+Following targets are available:
+  %s`, strings.Join(commands, "\n  "))
+		}
+		if err := fs.Parse(args); err != nil {
+			return err
+		}
+		args = fs.Args()
+	}
+
 	ru, ok := runnerMap[args[0]]
 	if !ok {
 		return fmt.Errorf("unknown subcommand: %s", args[0])

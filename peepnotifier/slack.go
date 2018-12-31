@@ -18,7 +18,7 @@ type slack struct {
 var slackReplacer = strings.NewReplacer("&", "&amp;", "<", "&lt;", ">", "&gt;")
 
 func (sl *slack) run(re *result, args []string) error {
-	fs := flag.NewFlagSet("peepnotify slack", flag.ContinueOnError)
+	fs := flag.NewFlagSet("peep-notify slack", flag.ContinueOnError)
 	fs.StringVar(&sl.channel, "c", "", "slack channel")
 	fs.BoolVar(&sl.isChannel, "channel", false, "use @channel mention")
 	fs.BoolVar(&sl.isHere, "here", false, "use @here mention")
