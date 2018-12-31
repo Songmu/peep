@@ -13,7 +13,8 @@ peep a process
 
 ## Description
 
-Watch a process and execute specified command for notification when finished.
+Watch a process using $PID and execute specified command for notification when finished.
+It can watch a remote command.
 
 ## Installation
 
@@ -29,7 +30,9 @@ Built binaries are available on gihub releases.
 
     % peep [-H user@host -p $PORT] $PID -- peep-notify slack
 
-### Custom Script
+![](https://user-images.githubusercontent.com/177122/50564546-05b53680-0d69-11e9-8d58-748c7469c325.png)
+
+### Custom Notification Script
 
     % peep [-H user@host -p $PORT] $PID -- /path/to/your-notification-script
 
@@ -38,11 +41,11 @@ Built binaries are available on gihub releases.
 - peep
   - main program
 - peep-notify
-  - bundled command to notify easily which supports slack and pushpullet
+  - bundled command to notify easily which supports [slack](https://slack.com) and [pushpullet](https://www.pushbullet.com/)
 
 ## Result JSON
 
-The notification script accepts a result JSON via STDIN that reports command result like following.
+The custom notification script accepts a result JSON via STDIN that reports command result like following.
 
 ```json
 {
