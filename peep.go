@@ -117,7 +117,7 @@ func (pe *peep) watch() (*result, error) {
 		if err != nil {
 			return nil, err
 		}
-		if p == nil || p.Command != pe.psStat.Command {
+		if p == nil || !p.Started.Equal(pe.psStat.Started) {
 			h := pe.host
 			if h == "" {
 				h = "localhost" // XXX retrieve from `hostname` command?
