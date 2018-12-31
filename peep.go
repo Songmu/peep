@@ -93,6 +93,7 @@ func (pe *peep) getPsStat() (*psStat, error) {
 	c.Stdin = os.Stdin
 	out, err := c.Output()
 	o := string(out)
+	// XXX recover ssh error?
 	if err != nil {
 		exitCode := wrapcommander.ResolveExitCode(err)
 		if exitCode != 1 ||
@@ -123,7 +124,7 @@ func (pe *peep) watch() (*result, error) {
 			}
 			return &result{
 				psStat: *pe.psStat,
-				Ended:  time.Now(),
+				Ended:  time.Now().Truncate(time.Second),
 				Host:   h,
 			}, nil
 		}

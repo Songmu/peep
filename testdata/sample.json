@@ -1,1 +1,1 @@
-{"user":"Songmu","command":"perl -E say $$; sleep 10","started":"2018-12-31T17:29:56+09:00","ended":"2018-12-31T17:30:07.524712+09:00","host":"localhost"}
+{"user":"Songmu","command":"perl -E say $$; sleep 10","started":"2018-12-31T17:29:56+09:00","ended":"2018-12-31T17:30:07+09:00","host":"localhost"}
