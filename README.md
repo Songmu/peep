@@ -18,15 +18,27 @@ Watch a process and execute specified command for notification when finished.
 ## Installation
 
     % go get github.com/Songmu/peep/cmd/peep
-    % go get github.com/Songmu/peep/cmd/peepnotify
+    % go get github.com/Songmu/peep/cmd/peep-notify
 
 Built binaries are available on gihub releases.
 <https://github.com/Songmu/peep/releases>
 
 ## Synopsis
 
-    % peep [-H user@host -p $PORT] $PID -- peepnotify slack
+### Easy Usage
+
+    % peep [-H user@host -p $PORT] $PID -- peep-notify slack
+
+### Custom Script
+
     % peep [-H user@host -p $PORT] $PID -- /path/to/your-notification-script
+
+## Commands
+
+- peep
+  - main program
+- peep-notify
+  - bundled command to notify easily which supports slack and pushpullet
 
 ## Result JSON
 
