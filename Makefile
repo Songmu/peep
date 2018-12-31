@@ -18,7 +18,7 @@ devel-deps: deps
 	  github.com/tcnksm/ghr
 
 test: deps
-	go test
+	go test ./...
 
 lint: devel-deps
 	go vet
@@ -35,7 +35,7 @@ bump: devel-deps
 
 crossbuild:
 	goxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
-	  -d=./dist/v$(VERSION) ./cmd/peep
+      -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*
 
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
