@@ -90,6 +90,7 @@ func (pe *peep) getPsStat() (*psStat, error) {
 		ps = append(ssh, ps...)
 	}
 	c := exec.Command(ps[0], ps[1:]...)
+	c.Stdin = os.Stdin
 	out, err := c.Output()
 	o := string(out)
 	if err != nil {
@@ -130,6 +131,7 @@ type psStat struct {
 	Started time.Time `json:"started"`
 }
 
+// XXX needs hostname?
 type result struct {
 	psStat
 	Ended time.Time `json:"ended"`
