@@ -57,6 +57,7 @@ var runnerMap = map[string]runner{
 	"stdout":     &stdout{},
 	"pushbullet": &pushbullet{},
 	"slack":      &slack{},
+	"mac":        &mac{},
 }
 
 var commands []string
