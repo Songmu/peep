@@ -51,11 +51,16 @@ The custom notification script accepts a result JSON via STDIN that reports comm
 {
   "user": "Songmu",
   "command": "perl -E say $$; sleep 10",
-  "started": "2018-12-31T17:29:56+09:00",
-  "ended": "2018-12-31T17:30:07+09:00",
-  "host": "localhost"
+  "startAt": "2018-12-31T17:29:56+09:00",
+  "endAt": "2018-12-31T17:30:07+09:00",
+  "host": "localhost",
+  "pid":20028
 }
 ```
+
+## See Also
+
+- [horenso](https://github.com/Songmu/horenso)
 
 ## Author
 

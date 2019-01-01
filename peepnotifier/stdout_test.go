@@ -14,8 +14,8 @@ func TestStdout_run(t *testing.T) {
 		User:    "Songmu",
 		Command: `perl -E 'say "Hello"'`,
 		Host:    "localhost",
-		Started: time.Now().UTC(),
-		Ended:   time.Now().UTC(),
+		StartAt: time.Now().UTC(),
+		EndAt:   time.Now().UTC(),
 	}
 	var (
 		buf  = &bytes.Buffer{}
