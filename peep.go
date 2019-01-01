@@ -126,6 +126,7 @@ func (pe *peep) watch() (*result, error) {
 				psStat: *pe.psStat,
 				EndAt:  time.Now().Truncate(time.Second),
 				Host:   h,
+				Pid:    pe.pid,
 			}, nil
 		}
 	}
@@ -141,6 +142,7 @@ type result struct {
 	psStat
 	EndAt time.Time `json:"endAt"`
 	Host  string    `json:"host"`
+	Pid   int       `json:"pid"`
 }
 
 var reg = regexp.MustCompile(`\s+`)

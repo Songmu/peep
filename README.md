@@ -53,7 +53,8 @@ The custom notification script accepts a result JSON via STDIN that reports comm
   "command": "perl -E say $$; sleep 10",
   "startAt": "2018-12-31T17:29:56+09:00",
   "endAt": "2018-12-31T17:30:07+09:00",
-  "host": "localhost"
+  "host": "localhost",
+  "pid":20028
 }
 ```
 
