@@ -55,11 +55,7 @@ func (pe *peep) run() error {
 	}
 	pe.psStat = p
 
-	ret, err := pe.watch()
-	if err != nil {
-		// XXX notify something?
-		return err
-	}
+	ret := pe.watch()
 	if len(pe.commandArgs) > 0 {
 		cmd := exec.Command(pe.commandArgs[0], pe.commandArgs[1:]...)
 		cmd.Stdout = pe.outStream
@@ -93,7 +89,6 @@ func (pe *peep) getPsStat() (*psStat, error) {
 	c.Stdin = os.Stdin
 	out, err := c.Output()
 	o := string(out)
-	// XXX recover ssh error?
 	if err != nil {
 		exitCode := wrapcommander.ResolveExitCode(err)
 		if exitCode != 1 ||
@@ -106,7 +101,7 @@ func (pe *peep) getPsStat() (*psStat, error) {
 	return parsePsStat(o)
 }
 
-func (pe *peep) watch() (*result, error) {
+func (pe *peep) watch() *result {
 	interval := time.Second
 	if pe.host != "" {
 		interval *= 5
@@ -115,19 +110,20 @@ func (pe *peep) watch() (*result, error) {
 		time.Sleep(interval)
 		p, err := pe.getPsStat()
 		if err != nil {
-			return nil, err
+			log.Printf("following error occurred on watching, retry later: %s", err)
+			continue
 		}
 		if p == nil || !p.StartAt.Equal(pe.psStat.StartAt) {
 			h := pe.host
 			if h == "" {
-				h = "localhost" // XXX retrieve from `hostname` command?
+				h = "localhost"
 			}
 			return &result{
 				psStat: *pe.psStat,
 				EndAt:  time.Now().Truncate(time.Second),
 				Host:   h,
 				Pid:    pe.pid,
-			}, nil
+			}
 		}
 	}
 }
