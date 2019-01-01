@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.0](https://github.com/Songmu/peep/compare/v0.0.2...v0.1.0) (2019-01-01)
+
+* Adjust field names (align with horenso) [#4](https://github.com/Songmu/peep/pull/4) ([Songmu](https://github.com/Songmu))
+
 ## [v0.0.2](https://github.com/Songmu/peep/compare/v0.0.1...v0.0.2) (2019-01-01)
 
 * support Mac desktop notification [#3](https://github.com/Songmu/peep/pull/3) ([Songmu](https://github.com/Songmu))
