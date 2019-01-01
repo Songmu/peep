@@ -19,7 +19,7 @@ root     Thu Feb 18 11:12:38 2016 /sbin/init  hoge
 	expect := psStat{
 		User:    "root",
 		Command: "/sbin/init  hoge",
-		Started: time.Date(2016, time.February, 18, 11, 12, 38, 0, time.Local),
+		StartAt: time.Date(2016, time.February, 18, 11, 12, 38, 0, time.Local),
 	}
 	out2, _ := parsePsStat(input2)
 	if !reflect.DeepEqual(*out2, expect) {

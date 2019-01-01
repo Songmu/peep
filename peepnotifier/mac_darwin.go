@@ -12,8 +12,8 @@ func (ma *mac) run(re *result, args []string) error {
 	}
 
 	msg := fmt.Sprintf(
-		"The command `%s` on %s by %s is finished around %s, which started at %s",
-		re.Command, re.Host, re.User, re.Ended, re.Started)
+		"The command `%s` on %s by %s is finished around %s, which startAt at %s",
+		re.Command, re.Host, re.User, re.EndAt, re.StartAt)
 	noti := gosxnotifier.NewNotification(msg)
 	noti.Title = "Command Finished!"
 	return noti.Push()

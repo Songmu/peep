@@ -109,7 +109,7 @@ type runner interface {
 type result struct {
 	User    string    `json:"user"`
 	Command string    `json:"command"`
-	Started time.Time `json:"started"`
-	Ended   time.Time `json:"ended"`
+	StartAt time.Time `json:"startAt"`
+	EndAt   time.Time `json:"endAt"`
 	Host    string    `json:"host"`
 }

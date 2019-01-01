@@ -117,14 +117,14 @@ func (pe *peep) watch() (*result, error) {
 		if err != nil {
 			return nil, err
 		}
-		if p == nil || !p.Started.Equal(pe.psStat.Started) {
+		if p == nil || !p.StartAt.Equal(pe.psStat.StartAt) {
 			h := pe.host
 			if h == "" {
 				h = "localhost" // XXX retrieve from `hostname` command?
 			}
 			return &result{
 				psStat: *pe.psStat,
-				Ended:  time.Now().Truncate(time.Second),
+				EndAt:  time.Now().Truncate(time.Second),
 				Host:   h,
 			}, nil
 		}
@@ -134,12 +134,12 @@ func (pe *peep) watch() (*result, error) {
 type psStat struct {
 	User    string    `json:"user"`
 	Command string    `json:"command"`
-	Started time.Time `json:"started"`
+	StartAt time.Time `json:"startAt"`
 }
 
 type result struct {
 	psStat
-	Ended time.Time `json:"ended"`
+	EndAt time.Time `json:"endAt"`
 	Host  string    `json:"host"`
 }
 
@@ -164,6 +164,6 @@ func parsePsStat(str string) (*psStat, error) {
 	return &psStat{
 		User:    stuff[0],
 		Command: stuff[6],
-		Started: t,
+		StartAt: t,
 	}, nil
 }

@@ -42,8 +42,8 @@ func (sl *slack) run(re *result, args []string) error {
 	}
 
 	msg := fmt.Sprintf(
-		"The command `%s` on %s by %s is finished around %s, which started at %s",
-		re.Command, re.Host, re.User, re.Ended, re.Started)
+		"The command `%s` on %s by %s is finished around %s, which startAt at %s",
+		re.Command, re.Host, re.User, re.EndAt, re.StartAt)
 	msg = slackReplacer.Replace(msg)
 	if sl.isHere {
 		msg += " <!here>"

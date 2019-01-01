@@ -17,7 +17,7 @@ func (pu *pushbullet) run(re *result, args []string) error {
 	}
 	pb := pbcli.New(token)
 	msg := fmt.Sprintf(
-		"The command %q by %s is finished around %s, which started at %s on %s",
-		re.Command, re.User, re.Ended, re.Started, re.Host)
+		"The command %q by %s is finished around %s, which startAt at %s on %s",
+		re.Command, re.User, re.EndAt, re.StartAt, re.Host)
 	return pb.PushNote("", "command finished!", msg)
 }
