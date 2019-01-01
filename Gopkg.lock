@@ -11,6 +11,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:29effdf58c338bb7c74dcc05e39c278d21ede2d8a144bc9cb8493f523848c33d"
+  name = "github.com/deckarep/gosx-notifier"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "e127226297fb751aa3b582db5e92361fcbfc5a6c"
+
+[[projects]]
+  branch = "master"
   digest = "1:26f95c09041ff5a8fd4b7ee18675b222f3a11a3d94b2a654f54fc3b430df8fea"
   name = "github.com/monochromegane/slack-incoming-webhooks"
   packages = ["."]
@@ -49,6 +57,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/Songmu/wrapcommander",
+    "github.com/deckarep/gosx-notifier",
     "github.com/monochromegane/slack-incoming-webhooks",
     "github.com/xconstruct/go-pushbullet",
     "golang.org/x/crypto/ssh/terminal",
