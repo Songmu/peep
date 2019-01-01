@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.1](https://github.com/Songmu/peep/compare/v0.1.0...v0.1.1) (2019-01-02)
+
+* ignore errors on watching [#5](https://github.com/Songmu/peep/pull/5) ([Songmu](https://github.com/Songmu))
+
 ## [v0.1.0](https://github.com/Songmu/peep/compare/v0.0.2...v0.1.0) (2019-01-01)
 
 * Adjust field names (align with horenso) [#4](https://github.com/Songmu/peep/pull/4) ([Songmu](https://github.com/Songmu))
