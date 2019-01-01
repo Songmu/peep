@@ -14,7 +14,7 @@ peep a process
 ## Description
 
 Watch a process using $PID and execute specified command for notification when finished.
-It can watch a remote command.
+It can also watch a remote command.
 
 ## Installation
 
@@ -41,7 +41,7 @@ Built binaries are available on gihub releases.
 - peep
   - main program
 - peep-notify
-  - bundled command to notify easily which supports [slack](https://slack.com) and [pushpullet](https://www.pushbullet.com/)
+  - bundled command to notify easily which supports [slack](https://slack.com), [pushpullet](https://www.pushbullet.com/) and mac desktop notification.
 
 ## Result JSON
 
