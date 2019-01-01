@@ -18,8 +18,18 @@ It can also watch a remote command.
 
 ## Installation
 
+### go get
+
     % go get github.com/Songmu/peep/cmd/peep
     % go get github.com/Songmu/peep/cmd/peep-notify
+
+### homebrew
+
+    % brew install Songmu/tap/peep
+
+### using [ghg](https://github.com/Songmu/ghg)
+
+    % ghg get Songmu/peep
 
 Built binaries are available on gihub releases.
 <https://github.com/Songmu/peep/releases>
