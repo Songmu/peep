@@ -87,6 +87,7 @@ func (pe *peep) getPsStat() (*psStat, error) {
 	}
 	c := exec.Command(ps[0], ps[1:]...)
 	c.Stdin = os.Stdin
+	c.Env = append(os.Environ(), "LC_ALL=POSIX")
 	out, err := c.Output()
 	o := string(out)
 	if err != nil {
